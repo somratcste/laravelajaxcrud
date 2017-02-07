@@ -14,3 +14,10 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::group(['middleware' => ['web']], function() {
+  Route::resource('blog','BlogController');
+  Route::post ( '/editItem', 'BlogController@editItem' );
+  Route::post ( '/addItem', 'BlogController@addItem' );
+  Route::post ( '/deleteItem', 'BlogController@deleteItem' );
+});
